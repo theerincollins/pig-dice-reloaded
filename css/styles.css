@@ -1,0 +1,12 @@
+#live-game {
+  display: none;
+}
+
+#win-screen {
+  display: none;
+  margin-bottom: 600px;
+}
+
+.glyphicon-refresh {
+  padding-right: 10px;
+}

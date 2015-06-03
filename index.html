@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="js/scripts.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+    <title>Pig Dice</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 col-md-offset-4">
+          <h1>Play Pig Dice!</h1>
+          <div id="new-game">
+            <form id="player-form" class="form-group">
+              <label for="player-one-name">Player One Name:</label>
+              <input type="text" name="player-one-name" id="player-one-name" class="form-control" autofocus>
+
+              <label for="player-two-name">Player Two Name:</label>
+              <input type="text" name="player-two-name" id="player-two-name" class="form-control">
+              <br>
+              <button class="btn btn-primary btn-success"><span class="glyphicon glyphicon-send" type="submit"></span> Start Game</button>
+            </form>
+          </div>
+        </div>
+        <div id="live-game">
+          <div class="col-md-4" id="player-one">
+            <h3></h3>
+            <p><span id="player-one-score"></span></p>
+          </div>
+          <div class="col-md-4" id="scoreboard">
+            <h3></h3>
+            <h3>Current round score</h3>
+            <p><span id="roundScore"></span></p>
+            <h4></h4>
+
+            <button class="btn btn-danger" id="play-round"><span class="glyphicon glyphicon-refresh"></span>Roll Die</button>
+            <button class="btn btn-success" id="end-turn"><i class="icon-white icon-refresh"></i> End Turn</button>
+          </div>
+          <div class="col-md-4" id="player-two">
+            <h3></h3>
+            <p><span id="player-two-score"></span></p>
+          </div>
+        </div>
+        <div id="win-screen" class="col-md-5 col-md-offset-4">
+          <h1></h1>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
