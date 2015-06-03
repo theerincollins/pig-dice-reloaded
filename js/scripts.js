@@ -62,6 +62,7 @@ $(function() {
     var newGame = new Game(playerOneName, playerTwoName);
 
     // start new game
+    $("#main-pig").fadeOut(750);
     $("#new-game").fadeOut(750);
     $("#live-game").delay(750).fadeIn(1000);
     $("#player-one-name").val("")
