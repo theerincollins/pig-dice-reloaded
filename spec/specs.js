@@ -17,22 +17,30 @@ describe('Game', function() {
     expect(testGame.endRound()).to.eq("Player 1 wins");
   });
 
-  it('will roll a dice and add its score into roundScore', function() {
+  it('will roll two dice and update the roundScore', function() {
     var testGame = new Game("Tywin", "Tyrion");
-    testGame.playRound();
-    expect(testGame.roundScore).to.be.above(0);
-    expect(testGame.roundScore).to.be.below(7);
-  });
+    testGame.playRound()
+    expect(testGame.roundScore).to.be.above(-1);
+    expect(testGame.roundScore).to.be.below(13);
+  })
 
-  it("will end the round if a 1 is rolled", function() {
+  it("will update roundScore to 0 if one of the die rolled is 1", function() {
     var testGame = new Game("Tywin", "Tyrion");
-    testGame.playRound();
-    testGame.roundScore = 1; // hard-coded score
+    testGame.roundScore = 1;
     while (testGame.roundScore > 0) {
       testGame.playRound();
     }
     expect(testGame.roundScore).to.eq(0);
-  });
+  })
+
+  it("will reset the player's score to 0 if both dice roll a 1", function() {
+    var testGame = new Game("Tywin", "Tyrion");
+    testGame.playerOne.score = 4;
+    while (testGame.playerOne.score > 0) {
+      testGame.playRound();
+    }
+    expect(testGame.playerOne.score).to.eq(0);
+  })
 });
 
 describe('Player', function() {
@@ -47,19 +55,3 @@ describe('Player', function() {
     expect(testPlayer.playerName).to.eq("Reek");
   });
 });
-
-// describe('rollDice', function() {
-//   it("will return a random number from 1 to 6", function() {
-//     expect(rollDice()).to.be.above(0);
-//     expect(rollDice()).to.be.below(7);
-//   });
-// });
-//
-// describe('playRound', function() {
-//   it("rolls dice and returns a number", function() {
-//     var testPlayer = new Player("Reek");
-//     playRound(testPlayer);
-//     expect(testPlayer.score).to.be.above(0);
-//     expect(testPlayer.score).to.be.below(7);
-//   });
-// });

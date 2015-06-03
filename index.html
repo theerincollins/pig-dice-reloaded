@@ -31,10 +31,14 @@
             <p><span id="player-one-score"></span></p>
           </div>
           <div class="col-md-4" id="scoreboard">
+            <h2></h2>
             <h3></h3>
+
             <h3>Current round score</h3>
             <p><span id="roundScore"></span></p>
-            <h4></h4>
+
+            <h5><span id="dice"></span></h5>
+
 
             <button class="btn btn-danger" id="play-round"><span class="glyphicon glyphicon-refresh"></span>Roll Die</button>
             <button class="btn btn-success" id="end-turn"><i class="icon-white icon-refresh"></i> End Turn</button>
@@ -42,6 +46,12 @@
           <div class="col-md-4" id="player-two">
             <h3></h3>
             <p><span id="player-two-score"></span></p>
+          </div>
+          <div id="pig-notify">
+            <div id="pig-speech-bubble">
+              <p><span class="pig-speak"></span></p>
+            </div>
+            <img src="img/pigtalk.jpg" height="300">
           </div>
         </div>
         <div id="win-screen" class="col-md-5 col-md-offset-4">

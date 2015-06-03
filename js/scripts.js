@@ -3,6 +3,9 @@ function Game(playerOne, playerTwo) {
   this.playerTwo = new Player(playerTwo);
   this.roundScore = 0;
   this.activePlayer = this.playerOne;
+  this.diceOne = 0;
+  this.diceTwo = 0;
+  var pigMessage;
 }
 
 function Player(playerName, score) {
@@ -30,12 +33,24 @@ Game.prototype.endRound = function() {
 }
 
 Game.prototype.playRound = function() {
-  var diceRoll = Math.floor(Math.random() * (6 - 1)) + 1;
-  if (diceRoll === 1) {
+  var diceOne = Math.floor(Math.random() * (6 - 1)) + 1;
+  this.diceOne = diceOne;
+  var diceTwo = Math.floor(Math.random() * (6 - 1)) + 1;
+  this.diceTwo = diceTwo;
+  if (diceOne === 1 && diceTwo === 1) {
+    var pigMessage = "Oink oink...back to zero!";
+    if (this.playerOne === this.activePlayer) {
+      this.playerOne.score = 0;
+    } else {
+      this.playerTwo.score = 0;
+    }
+  } else if (diceOne === 1 || diceTwo === 1) {
+    var pigMessage = "Oink. Ouch. Round over!";
     this.roundScore = 0;
     this.endRound();
   } else {
-    this.roundScore += diceRoll
+    this.roundScore += (diceOne + diceTwo);
+    var pigMessage = "";
   }
 }
 
@@ -51,7 +66,7 @@ $(function() {
     $("#live-game").delay(750).fadeIn(1000);
     $("#player-one-name").val("")
     $("#player-two-name").val("")
-    $("#live-game h4").text(newGame.activePlayer.playerName + "'s turn");
+    $("#live-game h2").text(newGame.activePlayer.playerName + "'s turn");
 
     // Player one setup
     $("#player-one-score").text(newGame.playerOne.score);
@@ -67,9 +82,13 @@ $(function() {
     //play round button
     $("#play-round").click(function() {
       newGame.playRound();
+      $("#live-game h5").text(newGame.diceOne + (String.fromCharCode(160)) + (String.fromCharCode(160)) + (String.fromCharCode(160)) +
+                                                (String.fromCharCode(160)) + (String.fromCharCode(160)) + (String.fromCharCode(160))
+      + newGame.diceTwo) // refactor me please :D
       $("#roundScore").text(newGame.roundScore);
       $("#player-two-score").text(newGame.playerTwo.score);
       $("#player-one-score").text(newGame.playerOne.score);
+      $("#scoreboard h2").text(newGame.activePlayer.playerName + "'s turn");
 
     });
 
@@ -80,7 +99,7 @@ $(function() {
       $("#roundScore").text(newGame.roundScore);
       $("#player-two-score").text(newGame.playerTwo.score);
       $("#player-one-score").text(newGame.playerOne.score);
-      $("#live-game h4").text(newGame.activePlayer.playerName + "'s turn");
+      $("#scoreboard h2").text(newGame.activePlayer.playerName + "'s turn");
 
 
       // win check
