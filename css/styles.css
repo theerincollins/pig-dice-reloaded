@@ -2,6 +2,17 @@
   display: none;
 }
 
+#main-pig {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+
 #win-screen {
   display: none;
   margin-bottom: 600px;
