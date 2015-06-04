@@ -15,9 +15,10 @@ The first player to rack up 100 points wins.
 
 ####Usage
 To view, download repository and open index.html in browser (preferably with Chrome).
-![picture alt](http://i.imgur.com/ebXTITk.png?1)
+![picture alt](http://i.imgur.com/k0LWP9L.png?1)
 
 ####Bugs/Issues
+* Dice animation not showing correct side after rolling, but scores still working as intended.
 * After a player wins, the new game screen will show up, but not the pig image.
 
 ####Future Updates
