@@ -67,7 +67,7 @@ h1 {
 }
 
 #rolling {
-  font-size: 23px;
+  font-size: 26px;
   font-weight: bold;
   color: rgb(185, 25, 25)
 }
@@ -204,4 +204,33 @@ h1 {
 .right-nostril {
   right: 20px;
   left: auto;
+}
+
+
+
+/* Dice animation */
+.dice {
+    background-image:url('../img/dice.png');
+    height: 49px;
+    width: 49px;
+    display: inline-block;
+    margin: 5px;
+}
+.dice_1 {
+    background-position: 0 0;
+}
+.dice_2 {
+    background-position: -50px 0;
+}
+.dice_3 {
+    background-position: -101px 0;
+}
+.dice_4 {
+    background-position: -151px 0;
+}
+.dice_5 {
+    background-position: -201px 0;
+}
+.dice_6 {
+    background-position: -251px 0;
 }
