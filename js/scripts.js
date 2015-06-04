@@ -5,7 +5,7 @@ function Game(playerOne, playerTwo) {
   this.activePlayer = this.playerOne;
   this.diceOne = 0;
   this.diceTwo = 0;
-  var pigMessage;
+  var pigMessage; // changes based on roll results
 }
 
 function Player(playerName, score) {
@@ -30,29 +30,29 @@ Game.prototype.endRound = function() {
     }
   }
   this.roundScore = 0;
-}
+};
 
 Game.prototype.playRound = function() {
-  var diceOne = Math.floor(Math.random() * (6 - 1)) + 1;
+  var diceOne = 1 + Math.floor(Math.random() * 6);
   this.diceOne = diceOne;
-  var diceTwo = Math.floor(Math.random() * (6 - 1)) + 1;
+  var diceTwo = 1 + Math.floor(Math.random() * 6);
   this.diceTwo = diceTwo;
   if (diceOne === 1 && diceTwo === 1) {
-    var pigMessage = "Oink oink...back to zero!";
+    pigMessage = "> Rolled two ONES!! Back to ZERO! <";
     if (this.playerOne === this.activePlayer) {
       this.playerOne.score = 0;
     } else {
       this.playerTwo.score = 0;
     }
   } else if (diceOne === 1 || diceTwo === 1) {
-    var pigMessage = "Oink. Ouch. Round over!";
+    pigMessage = "> Oink. Rolled a ONE -- Round over! <";
     this.roundScore = 0;
     this.endRound();
   } else {
     this.roundScore += (diceOne + diceTwo);
-    var pigMessage = "";
+    pigMessage = "> More points! <";
   }
-}
+};
 
 $(function() {
   $("form#player-form").submit(function(event) {
@@ -77,23 +77,34 @@ $(function() {
     $("#player-two-score").text(newGame.playerTwo.score);
     $("#player-two h3").text(newGame.playerTwo.playerName);
 
-    //scoreboard/controller setup
+    // Scoreboard setup
     $("#roundScore").text(newGame.roundScore);
 
     //play round button
     $("#play-round").click(function() {
-      newGame.playRound();
-      $("#live-game h5").text(newGame.diceOne + (String.fromCharCode(160)) + (String.fromCharCode(160)) + (String.fromCharCode(160)) +
-                                                (String.fromCharCode(160)) + (String.fromCharCode(160)) + (String.fromCharCode(160))
-      + newGame.diceTwo) // refactor me please :D
-      $("#roundScore").text(newGame.roundScore);
-      $("#player-two-score").text(newGame.playerTwo.score);
-      $("#player-one-score").text(newGame.playerOne.score);
-      $("#scoreboard h2").text(newGame.activePlayer.playerName + "'s turn");
+      $("#rolling").text("Rolling...");
+      $(".game-buttons").slideUp(100);
+      $(".piggie").slideUp(100);
+      setTimeout(function() { // adds delay to simulate rolling
+        newGame.playRound();
+        $("#dice-1").text(newGame.diceOne);
+        $("#dice-2").text(newGame.diceTwo);
 
+        $("#roundScore").text(newGame.roundScore);
+        $("#player-two-score").text(newGame.playerTwo.score);
+        $("#player-one-score").text(newGame.playerOne.score);
+        $("#scoreboard h2").text(newGame.activePlayer.playerName + "'s turn");
+        $("#rolling").text(pigMessage);
+
+        setTimeout(function() { // delays prompt after roll results
+          $("#rolling").text("What do you want to do?");
+        }, 1500);
+        $(".game-buttons").fadeIn(1000);
+        $(".piggie").fadeIn(300);
+      }, 1000);
     });
 
-    //end turn button
+    // End-turn button
     $("#end-turn").click(function() {
       newGame.endRound();
 
@@ -103,7 +114,7 @@ $(function() {
       $("#scoreboard h2").text(newGame.activePlayer.playerName + "'s turn");
 
 
-      // win check
+      // Checks for WIN scenario
       if (newGame.playerOne.score >= 100) {
         $("#live-game").fadeOut();
         $("#win-screen").delay(750).fadeIn();

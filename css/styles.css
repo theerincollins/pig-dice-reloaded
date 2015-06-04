@@ -1,5 +1,31 @@
+/* still needs responsive web design */
+
+html,body {
+  font-family: 'Architects Daughter';
+}
+
+#new-game p,li {
+  font-size: 13px;
+}
 #live-game {
   display: none;
+}
+
+#live-game h2 {
+  color: rgb(145, 104, 168);
+  font-weight: bold;
+  font-size: 50px;
+}
+#player-one h3 {
+  text-decoration: underline;
+}
+
+#player-two h3 {
+  text-decoration: underline;
+}
+
+.form-control:focus {
+  border-color: #000;
 }
 
 #main-pig {
@@ -8,10 +34,66 @@
   margin-right: auto;
 }
 
+#start-game {
+  left: 30%;
+  position: relative;
+  background: #FF9899;
+}
+#start-game:hover {
+  background: rgb(121, 90, 21);
+}
+
 h1 {
   text-align: center;
 }
 
+
+/* buttons for live game */
+.game-buttons {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+#play-round {
+  background: #000;
+  color: #FFF;
+}
+
+#play-round:hover {
+  background: rgb(221, 38, 148);
+}
+
+#end-turn:hover {
+  background: rgb(221, 200, 100);
+}
+
+#rolling {
+  font-size: 23px;
+  font-weight: bold;
+  color: rgb(185, 25, 25)
+}
+
+
+
+#player-one {
+  clear: both;
+}
+
+#player-one,#player-two, #scoreboard {
+  text-align: center;
+}
+
+#player-one-score,#player-two-score {
+  font-size: 40px;
+}
+
+#scoreboard {
+  font-size: 20px;
+}
+
+#roundScore {
+  font-size: 50px;
+  color: rgb(230, 29, 72);
+}
 
 #win-screen {
   display: none;
@@ -20,4 +102,106 @@ h1 {
 
 .glyphicon-refresh {
   padding-right: 10px;
+}
+
+#dice-1,#dice-2 {
+  margin-right: 4px;
+  font-weight: bolder;
+  font-size: 30px;
+  color: rgb(145, 104, 168);
+}
+
+
+
+/* Piggie */
+
+.piggie {
+  clear: both;
+}
+
+.head {
+  height: 200px;
+  width: 200px;
+  background-color: pink;
+  border-radius: 50%;
+  margin-left: 29%;
+  margin-top: 50px;
+  position: relative;
+  clear: both;
+}
+
+.ear-inner {
+  width: 0;
+  height: 0;
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+	border-bottom: 50px solid pink;
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+  position: absolute;
+  z-index: -5;
+  border-radius: 5px;
+}
+
+.right-ear {
+  right: 0;
+  left: auto;
+  -webkit-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+
+.eyes {
+  height: 25px;
+  width: 25px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+}
+
+.right-eye {
+  right: 50px;
+  left: auto;
+}
+
+.pupils {
+  height: 10px;
+  width: 10px;
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+  top: 58px;
+  left: 58px;
+}
+
+.right-pupil {
+  right: 58px;
+  left: auto;
+}
+
+.nose {
+  height: 50px;
+  width: 90px;
+  background-color: #E28FA7;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+.nostrils {
+  height: 20px;
+  width: 10px;
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+  top: 15px;
+  left: 20px;
+}
+
+.right-nostril {
+  right: 20px;
+  left: auto;
 }
