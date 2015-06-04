@@ -9,7 +9,7 @@
     <title>Pig Dice</title>
   </head>
   <body>
-    <div class="container">
+    <div class="container game-container">
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
           <h1>Pig Dice Reloaded!</h1>
@@ -45,8 +45,8 @@
             <h3>Current round score:</h3>
             <p><span id="roundScore"></span></p>
             <p>Die <strong>ONE</strong>: <span id="dice-1"></span> Die <strong>TWO</strong>: <span id="dice-2"></span></p>
-            <div class="dice dice_6"></div>
-            <div class="dice dice_6"></div>
+            <div class="dice1 dice_6"></div>
+            <div class="dice2 dice_6"></div>
             <p> <span id="rolling">What do you want to do?</span></p>
             <div class="game-buttons">
               <button class="btn btn-lg btn-default" id="play-round"><span class="glyphicon glyphicon-refresh"></span> Roll Dice</button>
@@ -75,10 +75,11 @@
             <p><span id="player-two-score"></span></p>
           </div>
         </div>
-        <div id="win-screen" class="col-md-5 col-md-offset-4">
-          <h1></h1>
-        </div>
       </div>
+    </div>
+
+    <div class="container" id="win-screen">
+      <h1></h1>
     </div>
   </body>
 </html>

@@ -14,17 +14,39 @@ function Player(playerName, score) {
 }
 
 Game.prototype.endRound = function() {
+
   if (this.activePlayer === this.playerOne) {
     this.playerOne.score += this.roundScore;
+
     if (this.playerOne.score >= 100) {
-      return playerOne.playerName + " wins! Oink oink oink.";
+
+        $("#live-game").hide();
+        $("#win-screen").delay(750).fadeIn();
+        $("#win-screen h1").text(this.playerOne.playerName + " wins!");
+        $("#win-screen").delay(8000).fadeOut();
+        $("#new-game").delay(8000).show();
+        $(".piggie").hide()
+
+      this.playerOne.score += this.roundScore;
+
     } else {
       this.activePlayer = this.playerTwo;
     }
+
   } else {
     this.playerTwo.score += this.roundScore;
+
     if (this.playerTwo.score >= 100) {
+        $("#live-game").hide();
+        $("#win-screen").delay(750).fadeIn();
+        $("#win-screen h1").text(this.playerTwo.playerName + " wins!");
+        $("#win-screen").delay(8000).fadeOut();
+        $("#new-game").delay(8000).show();
+        $(".piggie").hide()
+      this.playerTwo.score += this.roundScore;
+      alert("Player 2 Wins");
       return playerTwo.playerName + " wins! Oink oink oink.";
+
     } else {
     this.activePlayer = this.playerOne;
     }
@@ -33,9 +55,11 @@ Game.prototype.endRound = function() {
 };
 
 Game.prototype.playRound = function() {
-  var diceOne = 1 + Math.floor(Math.random() * 6);
+  diceOne = 1 + Math.floor(Math.random() * 6);
   this.diceOne = diceOne;
-  var diceTwo = 1 + Math.floor(Math.random() * 6);
+  throwAnimatedDice1($('.dice1'), 1, diceOne );
+  diceTwo = 1 + Math.floor(Math.random() * 6);
+  throwAnimatedDice2($('.dice2'), 1, diceTwo );
   this.diceTwo = diceTwo;
   if (diceOne === 1 && diceTwo === 1) {
     pigMessage = "> Rolled two ONES! Back to ZERO! <";
@@ -52,25 +76,42 @@ Game.prototype.playRound = function() {
     this.roundScore += (diceOne + diceTwo);
     pigMessage = "> More points! OINK <";
   }
+
 };
 
 // Dice animation
   // **currently not displaying correct number in image
   // but actual game scores are still working correctly
-function throwAnimatedDice(elem, spins) {
-    var value = Math.round(Math.random() * 5) + 1;
-    displayDice(10 + (spins*5), value, $(elem));
-    return value;
+function throwAnimatedDice1(elem1, spins, diceOne) {
+    displayDice1(10 + (spins*5), diceOne, $(elem1));
 }
 
-function displayDice(times, final, element) {
+function throwAnimatedDice2(elem2, spins, diceTwo) {
+    displayDice2(10 + (spins*5), diceTwo, $(elem2));
+}
+
+function displayDice1(times, final, element) {
     element.removeClass();
     if (times > 1) {
-        element.addClass('dice dice_' + (Math.round(Math.random() * 5) + 1));
+        element.addClass('dice1 dice_' + (Math.round(Math.random() * 5) + 1));
         setTimeout(function () {
-            displayDice(times - 1, final, element);
+            displayDice1(times - 1, final, element);
         }, 100);
-    } else element.addClass('dice dice_' + final);
+    } else {
+      element.addClass('dice1 dice_' + final);
+    }
+}
+
+function displayDice2(times, final, element) {
+    element.removeClass();
+    if (times > 1) {
+        element.addClass('dice2 dice_' + (Math.round(Math.random() * 5) + 1));
+        setTimeout(function () {
+            displayDice2(times - 1, final, element);
+        }, 100);
+    } else {
+      element.addClass('dice2 dice_' + final);
+    }
 }
 
 $(function() {
@@ -103,9 +144,6 @@ $(function() {
     $("#play-round").click(function() {
       $("#rolling").text("Rolling...");
 
-      $('.dice').each(function(index) {
-        throwAnimatedDice(this, index );
-      });
 
       $(".game-buttons").slideUp(100);
       $(".piggie").slideUp(100);
@@ -138,19 +176,20 @@ $(function() {
       $("#scoreboard h2").text(newGame.activePlayer.playerName + "'s turn");
 
       // Checks for WIN scenario
-      if (newGame.playerOne.score >= 100) {
-        $("#live-game").fadeOut();
-        $("#win-screen").delay(750).fadeIn();
-        $("#win-screen h1").text(newGame.playerOne.playerName + " wins!");
-        $("#win-screen").delay(1000).fadeOut();
-        $("#new-game").delay(3000).fadeIn();
-      } else if (newGame.playerTwo.score >= 100) {
-        $("#live-game").fadeOut();
-        $("#win-screen").delay(750).fadeIn();
-        $("#win-screen h1").text(newGame.playerTwo.playerName + "wins!");
-        $("#win-screen").delay(1000).fadeOut();
-        $("#new-game").delay(3000).fadeIn();
-      }
+      // if (newGame.playerOne.score >= 20 || newGame.endRound === (playerOne.playerName || playerTwo.playerName)) {
+      //   $("#live-game").hide();
+      //   $("#win-screen").delay(750).fadeIn();
+      //   $("#win-screen h1").text(newGame.playerOne.playerName + " wins!");
+      //   $("#win-screen").delay(1000).fadeOut();
+      //   $("#new-game").delay(3000).fadeIn();
+      //   $(".piggie").hide()
+      // } else if (newGame.playerTwo.score >= 20) {
+      //   $("#live-game").hide();
+      //   $("#win-screen").delay(750).fadeIn();
+      //   $("#win-screen h1").text(newGame.playerTwo.playerName + "wins!");
+      //   $("#win-screen").delay(1000).fadeOut();
+      //   $("#new-game").delay(3000).fadeIn();
+      // }
     });
   });
 });

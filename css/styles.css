@@ -2,6 +2,7 @@
 
 html,body {
   font-family: 'Architects Daughter';
+  height: 100%;
 }
 
 #new-game p,li {
@@ -97,7 +98,16 @@ h1 {
 
 #win-screen {
   display: none;
-  margin-bottom: 600px;
+  background-image:url('../img/wins.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  position: relative;
+  color: #ffd700;
+  height: 100%;
 }
 
 .glyphicon-refresh {
@@ -207,9 +217,8 @@ h1 {
 }
 
 
-
 /* Dice animation */
-.dice {
+.dice1, .dice2  {
     background-image:url('../img/dice.png');
     height: 49px;
     width: 49px;
